@@ -1,6 +1,6 @@
 function fnParadigmDriftGratingDrawCycle(acInputFromKofiko)
 
-global g_strctPTB g_strctDraw g_strctNet g_strctServerCycle
+global g_strctPTB g_strctDraw g_strctNet g_strctServerCycle g_bPhotoDiodeToggle
 
 if ~isempty(acInputFromKofiko)
 	strCommand = acInputFromKofiko{1};
@@ -49,7 +49,7 @@ switch g_strctServerCycle.m_iMachineState
         
         Screen('FillRect', g_strctPTB.m_hWindow, g_strctDraw.m_afBackgroundColor, g_strctPTB.m_aiRect);
         Screen('DrawTexture', g_strctPTB.m_hWindow, gratingtex, srcRect, dstRect, g_strctDraw.m_fOrientation);
-        Screen('DrawTexture', g_strctPTB.m_hWindow, masktex, srcRect, dstRect);
+        Screen('DrawTexture', g_strctPTB.m_hWindow, masktex, srcRect, dstRect, g_strctDraw.m_fOrientation);
         g_strctServerCycle.m_fLastFlipTime = fnFlipWrapper(g_strctPTB.m_hWindow);
         g_strctServerCycle.m_iMachineState = 0;
 	case 2
@@ -73,6 +73,8 @@ switch g_strctServerCycle.m_iMachineState
         
         Screen('FillRect', g_strctPTB.m_hWindow, g_strctDraw.m_afBackgroundColor, g_strctPTB.m_aiRect);
         
+
+               
         ifi = Screen('GetFlipInterval', g_strctPTB.m_hWindow);
         p = 1 / g_strctDraw.m_fSpatialFreq;
         shiftPerFlip = g_strctDraw.m_fTempFreq * ifi * p;
@@ -84,7 +86,16 @@ switch g_strctServerCycle.m_iMachineState
             i = i+1;
             srcRect = [xoffset 0 xoffset+g_strctDraw.m_fSize g_strctDraw.m_fSize];
             Screen('DrawTexture', g_strctPTB.m_hWindow, gratingtex, srcRect, dstRect, g_strctDraw.m_fOrientation);
-            Screen('DrawTexture', g_strctPTB.m_hWindow, masktex, maskSrcRect, dstRect);
+            Screen('DrawTexture', g_strctPTB.m_hWindow, masktex, maskSrcRect, dstRect, g_strctDraw.m_fOrientation);
+            %draw the PhoteDiode
+            if ~isempty(g_bPhotoDiodeToggle)
+                iPhotoDiodeSize = 50;
+                if g_bPhotoDiodeToggle
+                    Screen('FillRect', g_strctPTB.m_hWindow, [255 255 255], [0, 0, iPhotoDiodeSize, iPhotoDiodeSize]);
+                else
+                    Screen('FillRect', g_strctPTB.m_hWindow, [0, 0, 0], [0, 0, iPhotoDiodeSize, iPhotoDiodeSize]);
+                end
+            end
             vbl = Screen('Flip', g_strctPTB.m_hWindow, vbl+0.5*ifi);
         end
 		vbl = fnFlipWrapper(g_strctPTB.m_hWindow, vbl+0.5*ifi);

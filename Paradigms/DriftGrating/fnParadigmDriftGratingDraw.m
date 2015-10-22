@@ -47,7 +47,7 @@ switch g_strctParadigm.m_iMachineState
         srcRect = [0 0 iGratingSize iGratingSize];
         dstRect =  CenterRectOnPoint(srcRect, iCurrentCenterX, iCurrentCenterY);
         Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_gratingtex, srcRect, dstRect, fOrientation);
-        Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_masktex, srcRect, dstRect);	
+        Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_masktex, srcRect, dstRect, fOrientation);	
 	case {1, 2} % drifting gratings
         maskSrcRect = [0 0 iGratingSize iGratingSize];
         dstRect =  CenterRectOnPoint(maskSrcRect, iCurrentCenterX, iCurrentCenterY);
@@ -58,7 +58,7 @@ switch g_strctParadigm.m_iMachineState
             offset = mod(duration*fTempFreq*p, p);
             srcRect = [offset 0 iGratingSize+offset iGratingSize];
             Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_gratingtex, srcRect, dstRect, fOrientation);
-            Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_masktex, maskSrcRect, dstRect);
+            Screen('DrawTexture', g_strctPTB.m_hWindow, g_strctParadigm.m_masktex, maskSrcRect, dstRect, fOrientation);
             Screen('Flip', g_strctPTB.m_hWindow);
             duration = GetSecs() - stimulusOn;
         end        
