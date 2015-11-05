@@ -93,7 +93,7 @@ switch strCallback
 			iNewGratingSize = round(iNewGratingSize);
 			fnUpdateSlider(g_strctParadigm.m_strctControllers.m_hGratingSizeSlider, iNewGratingSize);
 			g_strctParadigm.m_strctStimulusParams = fnTsSetVar(g_strctParadigm.m_strctStimulusParams, 'GratingSizePix', iNewGratingSize);
-			fnLog('Setting grating Size to %d pixles', iNewGratingCenterY);
+			fnLog('Setting grating Size to %d pixles', iNewGratingSize);
 			
 			iCurrentCenterX = fnTsGetVar(g_strctParadigm.m_strctStimulusParams, 'GratingCenterXPix');
 			iCurrentCenterY = fnTsGetVar(g_strctParadigm.m_strctStimulusParams, 'GratingCenterYPix');
@@ -172,7 +172,7 @@ switch strCallback
 	case 'ContrastEdit'
 		strTemp = get(g_strctParadigm.m_strctControllers.m_hContrastEdit, 'string');
 		iNewContrast = fnMyStr2Num(strTemp);
-		if ~isempty(iNewSpatialFreq)
+		if ~isempty(iNewContrast)
 			fnUpdateSlider(g_strctParadigm.m_strctControllers.m_hContrastSlider, iNewContrast);
 			g_strctParadigm.m_strctStimulusParams = fnTsSetVar(g_strctParadigm.m_strctStimulusParams, 'Contrast', iNewContrast);
 			fnLog('Setting contrast to %f', iNewContrast);
@@ -205,7 +205,7 @@ switch strCallback
 	case 'OrientationEdit'
 		strTemp = get(g_strctParadigm.m_strctControllers.m_hOrientationEdit, 'string');
 		iNewOrientation = fnMyStr2Num(strTemp);
-		if ~isempty(iNewSpatialFreq)
+		if ~isempty(iNewOrientation)
 			fnUpdateSlider(g_strctParadigm.m_strctControllers.m_hOrientationSlider, iNewOrientation);
 			g_strctParadigm.m_strctStimulusParams = fnTsSetVar(g_strctParadigm.m_strctStimulusParams, 'Orientation', iNewOrientation);
 			fnLog('Setting orientation to %f', iNewOrientation);
@@ -227,8 +227,8 @@ switch strCallback
 		fnLog('Setting stimulus on time to %f MS', iNewStimulusOnTime);
 	case 'StimulusOnTimeEdit'
 		strTemp = get(g_strctParadigm.m_strctControllers.m_hStimulusOnTimeEdit, 'string');
-		iNewOrientation = fnMyStr2Num(strTemp);
-		if ~isempty(iNewSpatialFreq)
+		iNewStimulusOnTime = fnMyStr2Num(strTemp);
+		if ~isempty(iNewStimulusOnTime)
 			fnUpdateSlider(g_strctParadigm.m_strctControllers.m_hStimulusOnTimeSlider, iNewStimulusOnTime);
 			g_strctParadigm.m_strctStimulusParams = fnTsSetVar(g_strctParadigm.m_strctStimulusParams, 'StimulusOnMS', iNewStimulusOnTime);
 			fnLog('Setting stimulus on time to %f MS', iNewStimulusOnTime);
@@ -242,7 +242,7 @@ switch strCallback
 	case 'GazeRectEdit'
 		strTemp = get(g_strctParadigm.m_strctControllers.m_hGazeRectEdit, 'string');
 		iNewGazeRect = fnMyStr2Num(strTemp);
-		if ~isempty(iNewSpatialFreq)
+		if ~isempty(iNewGazeRect)
             iNewGazeRect = round(iNewGazeRect);
 			fnUpdateSlider(g_strctParadigm.m_strctControllers.m_hGazeRectSlider, iNewGazeRect);
 			g_strctParadigm.m_strctStimulusParams = fnTsSetVar(g_strctParadigm.m_strctStimulusParams, 'GazeBoxPix', iNewGazeRect);
