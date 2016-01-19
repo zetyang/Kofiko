@@ -12,7 +12,7 @@ if strcmp(g_strctAppConfig.m_strctDAQ.m_strAcqusitionCard,'mc')
     if ~g_strctAppConfig.m_strctDAQ.m_fVirtualDAQ
         Out = fnDAQ(strCommand, varargin{:});
     else 
-        Out = 1;
+        Out = 0;  % so that the virtual DAQ can work, only for development and debug purposes
     end
     
     if g_strctDAQParams.m_bMouseGazeEmulator && strcmp(strCommand,'GetAnalog')

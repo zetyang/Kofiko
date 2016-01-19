@@ -8,7 +8,7 @@ function fnMaximizeWindow(hFigure)
 iNumTitle = get(hFigure,'NumberTitle');
 strFigureName= get(hFigure,'Name');
 
-strWindowName = ['maximize_',num2str(hFigure)];
+strWindowName = ['maximize_',num2str(hFigure.Number)];
 set(hFigure,'Name',strWindowName,'NumberTitle','off');
 drawnow; % Make sure this takes effect
 fnMaximizeWind(strWindowName,get(hFigure),'Resize');

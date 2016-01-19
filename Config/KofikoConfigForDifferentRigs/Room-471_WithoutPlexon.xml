@@ -4,8 +4,8 @@
 <Config>
 
 <Directories
-   LogFolder = "C:\Kofiko Directory\Kofiko Log\"
-   PTB_Folder = "C:\Kofiko Directory\Psychtoolbox-3\Psychtoolbox\"
+   LogFolder = "D:\Kofiko Log\"
+   PTB_Folder = "D:\Psychtsoolbox-3\Psychtoolbox"
 > </Directories>
 
 <StimulusServer
